@@ -1,187 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
-    main{
-        width: 700px;
-        margin: 100px auto;
+  </head>
+  <style>
+    main {
+      width: 700px;
+      margin: 100px auto;
     }
-    .box{
-        width: 600px;
-        height: fit-content;
-        padding: 10px;
-        /* border: 1px solid black; */
-        box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-        background-color: white;
-        padding: 40px;
+    .box {
+      width: 600px;
+      height: fit-content;
+      padding: 10px;
+      /* border: 1px solid black; */
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+      background-color: white;
+      padding: 40px;
     }
-    .innertext{
-        display: inline;
-        font-size: 5px;
-        font-weight: 100;
-        color: white;
+    .innertext {
+      display: inline;
+      font-size: 5px;
+      font-weight: 100;
+      color: white;
     }
-    button{
-        width: 150px;
-        height: 40px;
-        border: none;
-        color: white;
-        font-size: 17px;
-        font-weight: 700;
-        border-radius: 8px;
-        cursor: pointer;
+    button {
+      width: 150px;
+      height: 40px;
+      border: none;
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
     }
-    .dbtn{
-        display: flex;
-        width: 550px;
-        justify-content: space-between;
+    .dbtn {
+      display: flex;
+      width: 550px;
+      justify-content: space-between;
     }
-    .dbtn button{
-        background-color: blue;
-        
+    .dbtn button {
+      background-color: blue;
     }
-    .log{
-        margin: 10px 0 0 250px;
-        background-color: red;
+    .log {
+      margin: 10px 0 0 250px;
+      background-color: red;
     }
-    #inputarea{
-        width: 550px;
-        margin: 10px;
-        text-align: center;
+    #inputarea {
+      width: 550px;
+      margin: 10px;
+      text-align: center;
     }
-    .inp{
-        width: 530px;
-        height: 40px;
-        border-radius: 5px;
-        border: 1px solid grey;
+    .inp {
+      width: 530px;
+      height: 40px;
+      border-radius: 5px;
+      border: 1px solid grey;
     }
-    #ta{
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid grey;
+    #ta {
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid grey;
     }
-    .btn-container{
-        display: flex;
-        justify-content: space-between;
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
     }
-    .ebtn{
-        background-color: rgb(11, 11, 166);
-        width: 250px;
+    .ebtn {
+      background-color: rgb(11, 11, 166);
+      width: 250px;
     }
-</style>
-<body>
-   <main>
-    <div class="box">
+  </style>
+  <body>
+    <main>
+      <div class="box">
         <h3 id="h3"></h3>
         <h4 id="h4">This Are All Your Blogs</h4>
         <div class="dbtn">
-           <button onclick="post()">post blog</button>
-           <button onclick="blogview()">view all blog</button>
-           <button>view liked blog</button>
+          <button onclick="post()">post blog</button>
+          <button onclick="blogview()">view all blog</button>
+          <button>view liked blog</button>
         </div>
-        <div id="inputarea">
-            
-        </div>
-    </div>
-    <button class="log" onclick="logout()">log out </button>
-   </main>
-    
-</body>
+        <div id="inputarea"></div>
+      </div>
+      <button class="log" onclick="logout()">log out</button>
+    </main>
+  </body>
 </html>
 ""
 <script>
-    let h3 = document.getElementById("h3")
-    let h4 = document.getElementById("h4")
-    let inputArea = document.getElementById("inputarea")
-    let textArea1 = document.getElementById("ta")
-    let input1 = document.getElementById("input")
-    let inputItem;
-    let arr =  JSON.parse(localStorage.getItem("postArray")) || []
+  let h3 = document.getElementById("h3");
+  let h4 = document.getElementById("h4");
+  let inputArea = document.getElementById("inputarea");
+  let textArea1 = document.getElementById("ta");
+  let input1 = document.getElementById("input");
+  let inputItem;
+  let arr = JSON.parse(localStorage.getItem("postArray")) || [];
 
-    let myUser = JSON.parse(localStorage.getItem("newKey"))
-    console.log(myUser);
-    h3.innerHTML = `<span> Welcome Back ${myUser[0].lastName} ${myUser[0].firstName}</span>`
-    // h4.innerHTML = ``
-    let logout = () => {
-        window.location.href = "login.html"
-    }
-    let post = () => {
-        h4.style.display = "none"
-        h3.innerHTML = "Post Your Blog"
-        inputArea.innerHTML = `<input type="text" placeholder="TITLE" class="inp" id="input">
+  let myUser = JSON.parse(localStorage.getItem("newKey"));
+  console.log(myUser);
+  h3.innerHTML = `<span> Welcome Back ${myUser[0].lastName} ${myUser[0].firstName}</span>`;
+  // h4.innerHTML = ``
+  let logout = () => {
+    window.location.href = "login.html";
+  };
+  let post = () => {
+    h4.style.display = "none";
+    h3.innerHTML = "Post Your Blog";
+    inputArea.innerHTML = `<input type="text" placeholder="TITLE" class="inp" id="input">
         <textarea name="" id="ta" cols="70" rows="20"></textarea>
         <div class="btn-container"> 
             <button class="ebtn" onclick="weSubmit()"> Submit </button>
             <button class="ebtn" onclick="eraze()"> Clear </button>
         </div>
-        `
-        
-    }
-    let blogview = () => {
-       document.getElementById("ta").style.display = "none"
-       document.getElementById("input").style.display = "none"
-       h3.innerHTML = "This Are All Your Blog"
-       let myKey = JSON.parse(localStorage.getItem("newKey"))
-        // let collectedInput = localStorage.getItem("setInput")
-       for (i=0; i < arr.length; i++){
-        // console.log(arr[i].myInput)
-        inputArea.innerHTML += `<h1> ${arr[i].myInput} </h1>
+        `;
+  };
+  let blogview = () => {
+    document.getElementById("ta").style.display = "none";
+    document.getElementById("input").style.display = "none";
+    h3.innerHTML = "This Are All Your Blog";
+    let myKey = JSON.parse(localStorage.getItem("newKey"));
+    // let collectedInput = localStorage.getItem("setInput")
+    for (i = 0; i < arr.length; i++) {
+      // console.log(arr[i].myInput)
+      inputArea.innerHTML += `<h1> ${arr[i].myInput} </h1>
         <p> ${arr[i].text1}</p>
         <p> Author: ${myKey[0].firstName}</p>
         <div>
             <button onclick="likeArr(${i})" id="${i}">Like</button
-        </div>  `
-       }
+        </div>  `;
     }
-    let eraze = () => {
-        // I stored the Dom object in a variable and i called out the variable, but this didn't work until i called the Dom in the function.
-        // textArea1.value = ""
-        // input1.value = ""
-        document.getElementById("ta").value = ""
-        document.getElementById("input").value = ""
+  };
+  let eraze = () => {
+    // I stored the Dom object in a variable and i called out the variable, but this didn't work until i called the Dom in the function.
+    // textArea1.value = ""
+    // input1.value = ""
+    document.getElementById("ta").value = "";
+    document.getElementById("input").value = "";
+  };
+  let weSubmit = () => {
+    let input2 = document.getElementById("input");
+    let ta = document.getElementById("ta");
+    inputItem = {
+      myInput: input2.value,
+      text1: ta.value,
+      unlike: true,
+    };
+    // let myInput = input2.value
+    // console.log(myInput)
+    arr.push(inputItem);
+    // console.log(arr)
+
+    let arr2 = JSON.stringify(arr);
+    localStorage.setItem("postArray", arr2);
+    // localStorage.setItem("setInput", arr)
+    blogview();
+  };
+
+  function likeArr(i) {
+    if (arr[i].unlike == true) {
+      document.getElementById(i).style.backgroundColor = "red";
+      document.getElementById(i).innerHTML = "unlike";
+
+      arr[i].unlike = false;
+      let arr2 = JSON.stringify(arr);
+      localStorage.setItem("postArray", arr2);
+    } else {
+      document.getElementById(i).style.backgroundColor = "grey";
+      document.getElementById(i).innerHTML = "like";
+
+      arr[i].unlike = true;
+      let arr2 = JSON.stringify(arr);
+      localStorage.setItem("postArray", arr2);
     }
-    let weSubmit = () => {
-        let input2 = document.getElementById("input")
-        let ta = document.getElementById("ta")
-        inputItem = {
-            myInput: input2.value,
-            text1 : ta.value,
-            unlike : true,
-        }
-        // let myInput = input2.value
-        // console.log(myInput)
-        arr.push(inputItem)
-        // console.log(arr)
-        
-        let arr2 = JSON.stringify(arr)
-        localStorage.setItem("postArray", arr2)
-            // localStorage.setItem("setInput", arr)
-        blogview()
-    }
-
-    function likeArr(i){
-        if (arr[i].unlike == true){
-            document.getElementById(i).style.backgroundColor = "red"
-            document.getElementById(i).innerHTML = "unlike"
-
-            arr[i].unlike = false
-            let arr2 = JSON.stringify(arr)
-            localStorage.setItem("postArray", arr2)
-        }
-        else{
-            document.getElementById(i).style.backgroundColor = "grey"
-            document.getElementById(i).innerHTML = "like"
-
-            arr[i].unlike = true
-            let arr2 = JSON.stringify(arr)
-            localStorage.setItem("postArray", arr2) 
-        }
-    }
-    
-
+  }
 </script>
